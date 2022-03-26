@@ -1,6 +1,27 @@
 {
   "compilerOptions": {
-    "target": "es5",
+    "baseUrl": ".",
+    "paths": {
+      "@s_apollo": ["server/apollo/index"],
+      "@s_apollo/*": ["server/apollo/*"],
+      "@models": ["server/models/index"],
+      "@models/*": ["server/models/*"],
+      "@middlewares": ["server/middlewares/index"],
+      "@middlewares/*": ["server/middlewares/*"],
+      "@utils": ["server/utils/index"],
+      "@utils/*": ["server/utils/*"],
+      "@public/*": ["src/public/*"],
+      "@styles/*": ["src/styles/*"],
+      "@apis/*": ["src/apis/*"],
+      "@components/*": ["src/components/*"],
+      "@themes": ["src/themes/index"],
+      "@themes/*": ["src/themes/*"],
+      "@hooks": ["src/hooks/index"],
+      "@hooks/*": ["src/hooks/*"],
+      "@mui/styled-engine": ["./node_modules/@mui/styled-engine-sc"]
+    },
+    "typeRoots": ["./cex"],
+    "target": "es6",
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
@@ -13,8 +34,12 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
-    "incremental": true
+    "incremental": true,
+    "strictNullChecks": false,
+    "outDir": "build",
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
-  "exclude": ["node_modules"]
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "graphql.config.js"],
+  "exclude": ["node_modules", "build"]
 }

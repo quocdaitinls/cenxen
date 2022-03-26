@@ -1,0 +1,20 @@
+import {getModelForClass} from "@typegoose/typegoose";
+import {User} from "./user";
+import {Task} from "./task";
+import {Project} from "./project";
+import {TaskComment} from "./task_comment";
+import {File} from "./file";
+import {Section} from "./section";
+import {ChatRoom} from "./chatroom";
+import {BucketMessages} from "./bucket_messages";
+import {Message} from "./message";
+
+export const UserModel = getModelForClass(User);
+export const FileModel = getModelForClass(File);
+export const ProjectModel = getModelForClass(Project);
+export const SectionModel = getModelForClass(Section);
+export const TaskModel = getModelForClass(Task);
+export const TaskCommentModel = getModelForClass(TaskComment);
+export const ChatRoomModel = getModelForClass(ChatRoom);
+export const BucketMessagesModel = getModelForClass(BucketMessages);
+export const MessageModel = getModelForClass(Message);
