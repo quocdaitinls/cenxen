@@ -7,7 +7,7 @@ type ContentProps = {
 };
 
 export type AuthSideProps<S, CP extends ContentProps = {}> = {
-  changeSide: (value: S, contentProps?: CP) => void;
+  changeSide: (value: S, contentProps?: CP, mergeProps?: boolean) => void;
 } & CP;
 
 export type AuthContentSideFC<
@@ -34,9 +34,15 @@ export const createAuthContent = <
     const [contentProps, setContentProps] = useState<CP>(initialProps);
     let SideComponents: Partial<Record<S, ReactElement>> = {};
 
-    const changeSide = (newSide: S, newContentProps?: CP) => {
+    const changeSide = (
+      newSide: S,
+      newContentProps?: CP,
+      mergeProps: boolean = true
+    ) => {
       setSide(newSide);
-      if (newContentProps) setContentProps(newContentProps);
+      if (newContentProps && !mergeProps) setContentProps(newContentProps);
+      if (newContentProps && mergeProps)
+        setContentProps((oldProps) => ({...oldProps, ...newContentProps}));
     };
 
     for (let key in map) {

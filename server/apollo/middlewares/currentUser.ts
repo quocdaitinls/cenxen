@@ -1,6 +1,10 @@
+import {
+  TokenName,
+  UserPayload,
+  verifyJwt,
+} from "@s_apollo/resolvers/auth/lib/services";
 import {MiddlewareFn} from "type-graphql";
 import {CexContext} from "../index";
-import {TokenName, UserPayload, verifyJwt} from "../resolvers/auth/services";
 
 export const CurrentUser: MiddlewareFn<CexContext> = async (
   {context},

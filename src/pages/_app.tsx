@@ -11,13 +11,22 @@ import Head from "next/head";
 import {AppProps} from "next/app";
 import "@styles/global.css";
 
+import {CacheProvider, EmotionCache} from "@emotion/react";
+import createEmotionCache from "src/utils/createEmotionCache";
+
+interface MyAppProps extends AppProps {
+  emotionCache?: EmotionCache;
+}
+
 const myQueryClientConfig: QueryClientConfig = {
   defaultOptions: {
     queries: {staleTime: 1000 * 20},
   },
 };
 
-function MyApp(props: AppProps) {
+const clientSideEmotionCache = createEmotionCache();
+
+function MyApp(props: MyAppProps) {
   const [queryClient] = React.useState(
     () => new QueryClient(myQueryClientConfig)
   );
@@ -29,23 +38,25 @@ function MyApp(props: AppProps) {
     }
   }, []);
 
-  const {Component, pageProps} = props;
+  const {Component, emotionCache = clientSideEmotionCache, pageProps} = props;
 
   return (
     <SocketProvider>
       <StoreProvider store={store}>
         <QueryClientProvider client={queryClient}>
           <GQLApisProvider value={apisStore}>
-            <Head>
-              <meta
-                name='viewport'
-                content='initial-scale=1, width=device-width'
-              />
-            </Head>
-            <ThemeProvider theme={defaultTheme}>
-              <CssBaseline />
-              <Component {...pageProps} />
-            </ThemeProvider>
+            <CacheProvider value={emotionCache}>
+              <Head>
+                <meta
+                  name='viewport'
+                  content='initial-scale=1, width=device-width'
+                />
+              </Head>
+              <ThemeProvider theme={defaultTheme}>
+                <CssBaseline />
+                <Component {...pageProps} />
+              </ThemeProvider>
+            </CacheProvider>
           </GQLApisProvider>
         </QueryClientProvider>
       </StoreProvider>

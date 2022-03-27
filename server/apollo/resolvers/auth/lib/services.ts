@@ -1,6 +1,5 @@
 import {User} from "@models/user";
 import {DocumentType} from "@typegoose/typegoose";
-// import {getPrivateKey, signJwt, TokenName} from "@utils/jwt";
 import {isUndefined} from "@utils/x";
 import {JwtPayload} from "jsonwebtoken";
 import {CexResponse} from "server/types/express";

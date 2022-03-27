@@ -1,5 +1,6 @@
 import {FieldHookConfig, useField} from "formik";
-import styled, {css} from "styled-components";
+import styled from "@emotion/styled";
+import {css} from "@emotion/css";
 import CexTextField, {CexTextFieldProps} from "./CexTextField";
 
 const StyledAuthTextField = styled(CexTextField)`
