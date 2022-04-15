@@ -1,8 +1,11 @@
-import {FileModel, ProjectModel, TaskModel, UserModel} from "@models";
-import {User, User_Profile} from "@models/user";
+import {FileModel, ProjectModel, TaskModel, UserModel} from "@db";
+import {File, Project, Task, User, User_Profile} from "@db/object";
+import {verifyConfirmEmailToken} from "@s_apollo/utils/links/confirmEmailUrl";
+import {verifyResetPasswordToken} from "@s_apollo/utils/links/resetPasswordUrl";
+import {DocumentType} from "@typegoose/typegoose";
+import {deleteProps} from "@utils/x";
 import {
   Arg,
-  Ctx,
   FieldResolver,
   Mutation,
   Query,
@@ -14,16 +17,8 @@ import {
   Input_Register,
   Input_ResetPassword,
   Input_UpdateUser,
-  Input_UpdateUser_Auth,
 } from "./input";
-import {deleteProps} from "@utils/x";
-import {Project} from "@models/project";
-import {DocumentType} from "@typegoose/typegoose";
-import {Task} from "@models/task";
-import {File} from "@models/file";
 import {sendConfirmEmail} from "./services";
-import {verifyConfirmEmailToken} from "@s_apollo/utils/links/confirmEmailUrl";
-import {verifyResetPasswordToken} from "@s_apollo/utils/links/resetPasswordUrl";
 
 @Resolver()
 export class User_QueryResolver {

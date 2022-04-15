@@ -2,7 +2,7 @@ import {SchemaTimestampsConfig} from "mongoose";
 import {Field, InterfaceType} from "type-graphql";
 
 @InterfaceType()
-export class Schema_Timestamps {
+export class SchemaTimestamps {
   @Field((type) => Date)
   created_at: Date;
 

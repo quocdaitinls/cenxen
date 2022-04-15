@@ -1,6 +1,5 @@
-import {FileModel, TaskModel} from "@models";
-import {Task} from "@models/task";
-import {TaskComment} from "@models/task_comment";
+import {FileModel, TaskModel} from "@db";
+import {Task, TaskComment} from "@db/object";
 import {DocumentType} from "@typegoose/typegoose";
 import {deleteProps} from "@utils/x";
 import {
@@ -11,7 +10,7 @@ import {
   Resolver,
   Root,
 } from "type-graphql";
-import * as TaskController from "./controller";
+import * as TaskServices from "./services";
 import {
   Input_CreateComment,
   Input_CreateTask,
@@ -41,7 +40,7 @@ export class Task_QueryResolver {
 export class Task_MutationResolver {
   @Mutation((returns) => Task, {nullable: true})
   async create_task(@Arg("input") input: Input_CreateTask) {
-    const createValue = await TaskController.checkAndRepairInput(null, input);
+    const createValue = await TaskServices.checkAndRepairInput(null, input);
     if (!createValue) return null;
 
     const newTask = await TaskModel.build(createValue);
@@ -58,13 +57,13 @@ export class Task_MutationResolver {
     }
 
     const value = deleteProps(input, "id");
-    const updateValue = await TaskController.checkAndRepairInput(id, value);
+    const updateValue = await TaskServices.checkAndRepairInput(id, value);
     if (!updateValue) return null;
 
     const task = await TaskModel.findByIdAndUpdate(id, updateValue, {
       new: true,
     });
-    const newTree = await TaskController.rebuildHierarchyTree(task);
+    const newTree = await TaskServices.rebuildHierarchyTree(task);
     return newTree;
   }
 }

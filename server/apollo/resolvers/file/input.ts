@@ -1,4 +1,3 @@
-import {Input_Schedule} from "@s_apollo/lib/input/schedule";
 import {Field, InputType, Int} from "type-graphql";
 
 @InputType()

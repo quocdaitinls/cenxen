@@ -1,7 +1,7 @@
-import {FileModel} from "@models";
-import {File} from "@models/file";
+import {FileModel} from "@db";
+import {File} from "@db/object";
 import {deleteProps} from "@utils/x";
-import {Arg, Mutation, Query, Resolver, Ctx} from "type-graphql";
+import {Arg, Mutation, Query, Resolver} from "type-graphql";
 import {Input_UpdateFile} from "./input";
 
 @Resolver()

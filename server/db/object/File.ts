@@ -1,17 +1,17 @@
-import {FileModel} from "@models";
+import {FileModel} from "@db";
 import {modelOptions, prop, Ref, ReturnModelType} from "@typegoose/typegoose";
 import {Field, Int, ObjectType} from "type-graphql";
-import {Schema_Id} from "./interface_type/schema_id";
-import {
-  SchemaOptions_Timestamps,
-  Schema_Timestamps,
-} from "./interface_type/schema_timestamp";
-import {User} from "./user";
+import {User} from "./User";
 import {v4 as uuidv4} from "uuid";
 import {ObjectCannedACL, PutObjectCommand} from "@aws-sdk/client-s3";
 import {AdminS3} from "@utils/aws_s3";
+import {
+  SchemaId,
+  SchemaOptions_Timestamps,
+  SchemaTimestamps,
+} from "@db/interface";
 
-@ObjectType({implements: [Schema_Id, Schema_Timestamps]})
+@ObjectType({implements: [SchemaId, SchemaTimestamps]})
 @modelOptions({
   schemaOptions: {
     timestamps: SchemaOptions_Timestamps,

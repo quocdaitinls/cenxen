@@ -6,19 +6,19 @@ import {
   Ref,
   ReturnModelType,
 } from "@typegoose/typegoose";
-import {ProjectModel} from ".";
-import {Schedule} from "./lib/schedule";
 import {ObjectType, Field} from "type-graphql";
-import {
-  SchemaOptions_Timestamps,
-  Schema_Timestamps,
-} from "./interface_type/schema_timestamp";
-import {Schema_Id} from "./interface_type/schema_id";
-import {User} from "./user";
+import {User} from "./User";
 import {WhatIsIt} from "@typegoose/typegoose/lib/internal/constants";
-import {Section} from "./section";
+import {
+  SchemaId,
+  SchemaOptions_Timestamps,
+  SchemaTimestamps,
+} from "@db/interface";
+import {Section} from "./Section";
+import {Schedule} from "./Schedule";
+import {ProjectModel} from "@db/models";
 
-@ObjectType({implements: [Schema_Id, Schema_Timestamps]})
+@ObjectType({implements: [SchemaId, SchemaTimestamps]})
 @modelOptions({
   schemaOptions: {
     toJSON: {

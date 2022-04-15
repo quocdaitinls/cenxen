@@ -1,5 +1,5 @@
-import {UserModel} from "@models";
-import {User} from "@models/user";
+import {UserModel} from "@db";
+import {User} from "@db/object";
 import {CexContext} from "@s_apollo";
 import {Ctx, Query, Resolver} from "type-graphql";
 import {AuthResponseData} from "./lib/def";

@@ -1,7 +1,7 @@
-import {ChatRoomModel} from "@models";
-import {ChatRoom, ChatRoomMember} from "@models/chatroom";
+import {ChatRoomModel} from "@db";
+import {ChatRoom, ChatRoomMember} from "@db/object";
 import {DocumentType} from "@typegoose/typegoose";
-import {clone, deleteProps} from "@utils/x";
+import {deleteProps} from "@utils/x";
 import {
   Arg,
   FieldResolver,

@@ -1,4 +1,4 @@
-import {Schedule} from "@models/lib/schedule";
+import {Schedule} from "@db/object";
 import {Field, InputType} from "type-graphql";
 import {ScheduleStates} from "server/types/enum";
 

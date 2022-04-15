@@ -8,9 +8,6 @@ const defaultTheme = createTheme({
     secondary: {
       main: "#19857b",
     },
-    // error: {
-    //   main: "red",
-    // },
   },
 });
 

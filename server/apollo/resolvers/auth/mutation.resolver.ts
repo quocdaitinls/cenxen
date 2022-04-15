@@ -1,4 +1,4 @@
-import {UserModel} from "@models";
+import {UserModel} from "@db";
 import {CexContext} from "@s_apollo";
 import {Arg, Ctx, Mutation, Resolver} from "type-graphql";
 import {AuthResponseData} from "./lib/def";

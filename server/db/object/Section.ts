@@ -1,15 +1,14 @@
-import {modelOptions, prop, Ref, ReturnModelType} from "@typegoose/typegoose";
-import {Field, Int, ObjectType} from "type-graphql";
-import {SectionModel} from ".";
-import {Project} from "./project";
-import {Schema_Id} from "./interface_type/schema_id";
 import {
+  SchemaId,
   SchemaOptions_Timestamps,
-  Schema_Timestamps,
-} from "./interface_type/schema_timestamp";
-import {User} from "./user";
+  SchemaTimestamps,
+} from "@db/interface";
+import {modelOptions, prop, Ref} from "@typegoose/typegoose";
+import {Field, Int, ObjectType} from "type-graphql";
+import {Project} from "./Project";
+import {User} from "./User";
 
-@ObjectType({implements: [Schema_Id, Schema_Timestamps]})
+@ObjectType({implements: [SchemaId, SchemaTimestamps]})
 @modelOptions({
   schemaOptions: {
     toJSON: {

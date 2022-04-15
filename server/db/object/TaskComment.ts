@@ -1,19 +1,17 @@
-import emotionPlugin from "@models/plugins/emotionPlugin";
-import {modelOptions, mongoose, plugin, prop, Ref} from "@typegoose/typegoose";
-import {WhatIsIt} from "@typegoose/typegoose/lib/internal/constants";
-import {Field, ObjectType} from "type-graphql";
-
-import {Task} from "./task";
-import JSON_Type from "graphql-type-json";
-import {File} from "./file";
 import {
+  SchemaId,
   SchemaOptions_Timestamps,
-  Schema_Timestamps,
-} from "./interface_type/schema_timestamp";
-import {Schema_Id} from "./interface_type/schema_id";
-import {User} from "./user";
+  SchemaTimestamps,
+} from "@db/interface";
+import {modelOptions, mongoose, prop, Ref} from "@typegoose/typegoose";
+import {WhatIsIt} from "@typegoose/typegoose/lib/internal/constants";
+import JSON_Type from "graphql-type-json";
+import {Field, ObjectType} from "type-graphql";
+import {File} from "./File";
+import {Task} from "./Task";
+import {User} from "./User";
 
-@ObjectType({implements: [Schema_Id, Schema_Timestamps]})
+@ObjectType({implements: [SchemaId, SchemaTimestamps]})
 @modelOptions({
   schemaOptions: {
     toJSON: {
@@ -25,7 +23,6 @@ import {User} from "./user";
     timestamps: SchemaOptions_Timestamps,
   },
 })
-// @plugin(emotionPlugin)
 export class TaskComment {
   @Field((type) => String)
   @prop({ref: () => Task, required: true})

@@ -7,16 +7,16 @@ import {
   ReturnModelType,
 } from "@typegoose/typegoose";
 import {WhatIsIt} from "@typegoose/typegoose/lib/internal/constants";
-import {User} from "./user";
-import {File} from "./file";
-import {BucketMessages} from "./bucket_messages";
-import {Message} from "./message";
+import {BucketMessages} from "./BucketMessages";
 import {Field, ObjectType} from "type-graphql";
-import {Schema_Id} from "./interface_type/schema_id";
+import {User} from "./User";
 import {
+  SchemaId,
   SchemaOptions_Timestamps,
-  Schema_Timestamps,
-} from "./interface_type/schema_timestamp";
+  SchemaTimestamps,
+} from "@db/interface";
+import {Message} from "./Message";
+import {File} from "./File";
 
 @ObjectType()
 @modelOptions({
@@ -42,7 +42,7 @@ export class ChatRoomMember {
   seen_id: string;
 }
 
-@ObjectType({implements: [Schema_Id, Schema_Timestamps]})
+@ObjectType({implements: [SchemaId, SchemaTimestamps]})
 @modelOptions({
   schemaOptions: {
     toJSON: {

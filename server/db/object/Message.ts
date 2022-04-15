@@ -2,18 +2,18 @@ import mongoose from "mongoose";
 import {modelOptions, prop, Ref} from "@typegoose/typegoose";
 import {WhatIsIt} from "@typegoose/typegoose/lib/internal/constants";
 import {Field, ObjectType} from "type-graphql";
-import {BucketMessages} from "./bucket_messages";
-import {File} from "./file";
+import {BucketMessages} from "./BucketMessages";
+import {File} from "./File";
 import JSON_Type from "graphql-type-json";
-import {Schema_Id} from "./interface_type/schema_id";
+import {User} from "./User";
+import {ChatRoom} from "./ChatRoom";
 import {
+  SchemaId,
   SchemaOptions_Timestamps,
-  Schema_Timestamps,
-} from "./interface_type/schema_timestamp";
-import {User} from "./user";
-import {ChatRoom} from "./chatroom";
+  SchemaTimestamps,
+} from "@db/interface";
 
-@ObjectType({implements: [Schema_Id, Schema_Timestamps]})
+@ObjectType({implements: [SchemaId, SchemaTimestamps]})
 @modelOptions({
   schemaOptions: {
     toJSON: {

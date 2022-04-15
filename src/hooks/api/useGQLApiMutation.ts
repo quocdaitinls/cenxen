@@ -14,8 +14,8 @@ export function useGQLApiMutation<TData, TError, TVariables, TContext>(
   const api = extractFnc(apisMap);
   const defaultApiConfig: GQLApi_ApiConfig<TVariables, TData> = {
     onSuccess: (data) => data,
-    onError: (error) => {
-      for (let err of error) throw Error(err.message);
+    onError: (errors) => {
+      for (let err of errors) throw Error(err.message);
     },
   };
 

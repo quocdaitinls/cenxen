@@ -1,9 +1,12 @@
-import {MongooseInput_BuildTask, MongooseInput_UpdateTask} from "@models/task";
-import {MongooseInput_BuildComment} from "@models/task_comment";
 import {Input_Schedule} from "@s_apollo/lib/input/schedule";
 import {Field, InputType, Int} from "type-graphql";
 import {Piorities} from "server/types/enum";
 import {Input_CreateFile} from "../file/input";
+import {
+  MongooseInput_BuildComment,
+  MongooseInput_BuildTask,
+  MongooseInput_UpdateTask,
+} from "@db/object";
 
 @InputType()
 export class Input_CreateTask implements Partial<MongooseInput_BuildTask> {

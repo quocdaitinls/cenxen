@@ -1,5 +1,5 @@
 import React, {useEffect} from "react";
-import styled, {keyframes} from "@emotion/styled";
+import styled, {keyframes} from "styled-components";
 
 export type SpinnerProps = {
   size?: number;

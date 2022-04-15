@@ -1,7 +1,7 @@
-import {ProjectModel, SectionModel} from "@models";
-import {Project} from "@models/project";
-import {Section} from "@models/section";
+import {ProjectModel} from "@db";
+import {Project, Section} from "@db/object";
 import {DocumentType} from "@typegoose/typegoose";
+import {deleteProps} from "@utils/x";
 import {
   Arg,
   FieldResolver,
@@ -16,7 +16,6 @@ import {
   Input_UpdateProject,
   Input_UpdateSection,
 } from "./input";
-import {deleteProps} from "@utils/x";
 
 @Resolver()
 export class Project_QueryResolver {

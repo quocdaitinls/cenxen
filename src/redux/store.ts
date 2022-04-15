@@ -1,13 +1,12 @@
 import {configureStore} from "@reduxjs/toolkit";
 import {TypedUseSelectorHook, useDispatch, useSelector} from "react-redux";
 import {cexWsMid} from "./middlewares";
-import {ChatReducer, GlobalReducer, UserReducer} from "./slices";
+import {ChatReducer, GlobalReducer} from "./slices";
 
 export const buildStore = () => {
   return configureStore({
     reducer: {
       global: GlobalReducer,
-      user: UserReducer,
       chat: ChatReducer,
     },
     middleware: (getDefaultMiddleware) =>

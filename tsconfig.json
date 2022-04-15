@@ -4,8 +4,8 @@
     "paths": {
       "@s_apollo": ["server/apollo/index"],
       "@s_apollo/*": ["server/apollo/*"],
-      "@models": ["server/models/index"],
-      "@models/*": ["server/models/*"],
+      "@db": ["server/db/index"],
+      "@db/*": ["server/db/*"],
       "@middlewares": ["server/middlewares/index"],
       "@middlewares/*": ["server/middlewares/*"],
       "@utils": ["server/utils/index"],

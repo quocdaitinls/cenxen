@@ -39,6 +39,9 @@ const LoginWithGoogleButton: React.FC<LoginWithGoogleButtonProps> = (props) => {
     (apisMap) => apisMap.loginWithGoogle,
     {
       onSuccess: () => {},
+      onError: (err) => {
+        console.log(err);
+      },
     }
   );
 

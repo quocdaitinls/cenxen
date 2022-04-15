@@ -10,19 +10,19 @@ import {WhatIsIt} from "@typegoose/typegoose/lib/internal/constants";
 import {isNull} from "@utils/x";
 import {ObjectId} from "mongoose";
 import {Field, ObjectType} from "type-graphql";
-import {TaskModel} from ".";
-import {Section} from "./section";
-import {Schedule} from "./lib/schedule";
-import {Schema_Id} from "./interface_type/schema_id";
-import {TaskComment} from "./task_comment";
-import {
-  SchemaOptions_Timestamps,
-  Schema_Timestamps,
-} from "./interface_type/schema_timestamp";
-import {User} from "./user";
+import {Section} from "./Section";
+import {TaskComment} from "./TaskComment";
+import {User} from "./User";
 import {Piorities} from "server/types/enum";
+import {
+  SchemaId,
+  SchemaOptions_Timestamps,
+  SchemaTimestamps,
+} from "@db/interface";
+import {Schedule} from "./Schedule";
+import {TaskModel} from "@db/models";
 
-@ObjectType({implements: [Schema_Id, Schema_Timestamps]})
+@ObjectType({implements: [SchemaId, SchemaTimestamps]})
 @modelOptions({
   schemaOptions: {
     toJSON: {

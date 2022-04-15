@@ -1,6 +1,5 @@
-import {FileModel} from "@models";
-import {TaskComment} from "@models/task_comment";
-
+import {FileModel} from "@db";
+import {TaskComment} from "@db/object";
 import {DocumentType} from "@typegoose/typegoose";
 import {FieldResolver, Resolver, Root} from "type-graphql";
 

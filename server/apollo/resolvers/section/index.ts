@@ -1,6 +1,5 @@
-import {SectionModel} from "@models";
-import {Section} from "@models/section";
-import {Arg, Mutation, Query, Resolver} from "type-graphql";
+import {Section} from "@db/object";
+import {Resolver} from "type-graphql";
 
 @Resolver()
 export class Section_QueryResolver {}

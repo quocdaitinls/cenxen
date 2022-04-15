@@ -1,8 +1,7 @@
-import {TaskModel} from "@models";
-import {Task} from "@models/task";
+import {TaskModel} from "@db";
+import {Task} from "@db/object";
 import {DocumentType} from "@typegoose/typegoose";
 import {isNull} from "@utils/x";
-import {Input_UpdateTask} from "./input";
 
 // check id2 is valid to set parent_id for task_id1
 export const checkValidParent = async (id1: string, id2: string) => {

@@ -1,4 +1,4 @@
-import {User} from "@models/user";
+import {User} from "@db/object";
 import {DocumentType} from "@typegoose/typegoose";
 import {isUndefined} from "@utils/x";
 import {JwtPayload} from "jsonwebtoken";

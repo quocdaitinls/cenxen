@@ -13,6 +13,7 @@ import "@styles/global.css";
 
 import {CacheProvider, EmotionCache} from "@emotion/react";
 import createEmotionCache from "src/utils/createEmotionCache";
+import {ErrorBoundary} from "@components/ErrorBoundary";
 
 interface MyAppProps extends AppProps {
   emotionCache?: EmotionCache;
@@ -24,7 +25,7 @@ const myQueryClientConfig: QueryClientConfig = {
   },
 };
 
-const clientSideEmotionCache = createEmotionCache();
+// const clientSideEmotionCache = createEmotionCache();
 
 function MyApp(props: MyAppProps) {
   const [queryClient] = React.useState(
@@ -38,25 +39,27 @@ function MyApp(props: MyAppProps) {
     }
   }, []);
 
-  const {Component, emotionCache = clientSideEmotionCache, pageProps} = props;
+  const {Component, pageProps} = props;
 
   return (
     <SocketProvider>
       <StoreProvider store={store}>
         <QueryClientProvider client={queryClient}>
           <GQLApisProvider value={apisStore}>
-            <CacheProvider value={emotionCache}>
-              <Head>
-                <meta
-                  name='viewport'
-                  content='initial-scale=1, width=device-width'
-                />
-              </Head>
-              <ThemeProvider theme={defaultTheme}>
-                <CssBaseline />
+            {/* <CacheProvider value={emotionCache}> */}
+            <Head>
+              <meta
+                name='viewport'
+                content='initial-scale=1, width=device-width'
+              />
+            </Head>
+            <ThemeProvider theme={defaultTheme}>
+              <CssBaseline />
+              <ErrorBoundary>
                 <Component {...pageProps} />
-              </ThemeProvider>
-            </CacheProvider>
+              </ErrorBoundary>
+            </ThemeProvider>
+            {/* </CacheProvider> */}
           </GQLApisProvider>
         </QueryClientProvider>
       </StoreProvider>

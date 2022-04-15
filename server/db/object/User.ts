@@ -1,5 +1,8 @@
-import jwt from "jsonwebtoken";
-import validator from "validator";
+import {
+  SchemaId,
+  SchemaOptions_Timestamps,
+  SchemaTimestamps,
+} from "@db/interface";
 import {
   DocumentType,
   modelOptions,
@@ -9,20 +12,11 @@ import {
   ReturnModelType,
   Severity,
 } from "@typegoose/typegoose";
-import {Project} from "./project";
-import {Task} from "./task";
-import {WhatIsIt} from "@typegoose/typegoose/lib/internal/constants";
 import {randomBytes, scrypt} from "crypto";
-import {promisify} from "util";
-import {SignOptions} from "jsonwebtoken";
 import {Field, Int, ObjectType} from "type-graphql";
-import {
-  SchemaOptions_Timestamps,
-  Schema_Timestamps,
-} from "./interface_type/schema_timestamp";
-import {Schema_Id} from "./interface_type/schema_id";
-import {File} from "./file";
-// import {JWT_KEY} from "server/constant";
+import {promisify} from "util";
+import validator from "validator";
+import {File} from "./File";
 
 const scryptAsync = promisify(scrypt);
 
@@ -37,7 +31,7 @@ User_Auth
 })
 export class User_Auth {
   @Field((type) => String, {nullable: true})
-  @prop({type: String, unique: true, index: true})
+  @prop({type: String, default: null, unique: true, index: true})
   username: string;
 
   @Field((type) => String, {nullable: true})
@@ -100,7 +94,7 @@ class User_Setting {
 /* 
 User
  */
-@ObjectType({implements: [Schema_Id, Schema_Timestamps]})
+@ObjectType({implements: [SchemaId, SchemaTimestamps]})
 @modelOptions({
   options: {
     allowMixed: Severity.ALLOW,

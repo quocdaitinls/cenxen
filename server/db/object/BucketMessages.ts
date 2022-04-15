@@ -1,4 +1,9 @@
 import {
+  SchemaId,
+  SchemaOptions_Timestamps,
+  SchemaTimestamps,
+} from "@db/interface";
+import {
   DocumentType,
   modelOptions,
   mongoose,
@@ -7,15 +12,10 @@ import {
 } from "@typegoose/typegoose";
 import {WhatIsIt} from "@typegoose/typegoose/lib/internal/constants";
 import {Field, Int, ObjectType} from "type-graphql";
-import {ChatRoom} from "./chatroom";
-import {Message} from "./message";
-import {Schema_Id} from "./interface_type/schema_id";
-import {
-  SchemaOptions_Timestamps,
-  Schema_Timestamps,
-} from "./interface_type/schema_timestamp";
+import {ChatRoom} from "./ChatRoom";
+import {Message} from "./Message";
 
-@ObjectType({implements: [Schema_Id, Schema_Timestamps]})
+@ObjectType({implements: [SchemaId, SchemaTimestamps]})
 @modelOptions({
   schemaOptions: {
     toJSON: {
