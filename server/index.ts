@@ -8,12 +8,12 @@ import createApolloServer from "./apollo";
 
 import cookieParser from "cookie-parser";
 import {errorHandler} from "@middlewares";
-import {AdminS3} from "@utils/CX_AWS_s3";
+import {AdminS3} from "@utils/aws_s3";
 
 import {messageBuilder} from "./socket";
 import {createSocketServer} from "@utils/socket";
 
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 const DEV = process.env.NODE_ENV !== "production";
 const TEST = process.env.NODE_ENV === "test";
 
