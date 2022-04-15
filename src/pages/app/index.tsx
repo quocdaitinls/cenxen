@@ -1,2 +1,1 @@
-// export * from "@components/Home";
-export {default} from "@components/Home";
+export {default, getServerSideProps} from "@components/Home";
