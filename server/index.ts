@@ -8,7 +8,7 @@ import createApolloServer from "./apollo";
 
 import cookieParser from "cookie-parser";
 import {errorHandler} from "@middlewares";
-import {AdminS3} from "@utils/aws_s3";
+import {AdminS3} from "@utils/CX_AWS_s3";
 
 import {messageBuilder} from "./socket";
 import {createSocketServer} from "@utils/socket";
@@ -33,19 +33,19 @@ function bootstrapSocketServer(httpServer: HttpServer) {
 async function bootstrapAwsS3() {
   const admin = AdminS3.admin({
     myBucket: {
-      name: process.env.AWS_BUCKET_NAME as string,
-      region: process.env.AWS_BUCKET_REGION as string,
+      name: process.env.CX_AWS_BUCKET_NAME as string,
+      region: process.env.CX_AWS_BUCKET_REGION as string,
     },
     s3Client: {
-      region: process.env.AWS_CLIENT_REGION as string,
+      region: process.env.CX_AWS_CLIENT_REGION as string,
       credentials: {
-        accessKeyId: process.env.AWS_ACCESS_KEY_ID as string,
-        secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY as string,
+        accessKeyId: process.env.CX_AWS_ACCESS_KEY_ID as string,
+        secretAccessKey: process.env.CX_AWS_SECRET_ACCESS_KEY as string,
       },
     },
   });
 
-  if (!admin.getMyBucket()) {
+  if (!(await admin.getMyBucket())) {
     await admin.createMyBucket();
   }
 }
