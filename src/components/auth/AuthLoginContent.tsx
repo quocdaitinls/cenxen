@@ -9,8 +9,9 @@ import {
   GoogleLoginResponse,
   GoogleLoginResponseOffline,
 } from "react-google-login";
+import {useFormConfig} from "type-formik";
 import GoogleLogo from "../../public/google_logo.png";
-import {useLoginFormConfig} from "./hooks/useLoginForm";
+import {LoginForm} from "./form";
 import AuthLink from "./shared/AuthLink";
 import {AuthSubmitButton} from "./shared/AuthSubmitButton";
 import {AuthTextField} from "./shared/AuthTextField";
@@ -100,10 +101,8 @@ const AuthLoginForm: AuthContentSideFC<LoginSide> = ({changeSide}) => {
     onError: (error: Error) => {},
   });
 
-  const formConfig = useLoginFormConfig({
-    onSubmit: async (values) => {
-      login.mutate({input: values});
-    },
+  const formConfig = useFormConfig(LoginForm, (values) => {
+    login.mutate({input: values});
   });
 
   return (

@@ -1,6 +1,12 @@
-import Document, {Html, Head, Main, NextScript} from "next/document";
+import Document, {
+  Html,
+  Head,
+  Main,
+  NextScript,
+  DocumentInitialProps,
+} from "next/document";
 import {ServerStyleSheet} from "styled-components";
-import React from "react";
+import React, {ReactFragment} from "react";
 
 export default class MyDocument extends Document {
   render() {
@@ -40,14 +46,19 @@ MyDocument.getInitialProps = async (ctx) => {
       });
 
     const initialProps = await Document.getInitialProps(ctx);
+
+    // const styles = (
+    //   <React.Fragment>
+    //     {initialProps.styles}
+    //     {sheet.getStyleElement()}
+    //   </React.Fragment>
+    // );
+
+    const styles = [...initialProps.styles, ...sheet.getStyleElement()];
+
     return {
       ...initialProps,
-      styles: (
-        <React.Fragment>
-          {initialProps.styles}
-          {sheet.getStyleElement()}
-        </React.Fragment>
-      ),
+      styles,
     };
   } finally {
     sheet.seal();

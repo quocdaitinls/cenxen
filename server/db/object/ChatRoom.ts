@@ -7,7 +7,7 @@ import {
   ReturnModelType,
 } from "@typegoose/typegoose";
 import {WhatIsIt} from "@typegoose/typegoose/lib/internal/constants";
-import {BucketMessages} from "./BucketMessages";
+import {MessageBucket} from "./MessageBucket";
 import {Field, ObjectType} from "type-graphql";
 import {User} from "./User";
 import {
@@ -80,8 +80,8 @@ export class ChatRoom {
   last_message: Message;
 
   @Field((type) => String, {nullable: true})
-  @prop({ref: () => BucketMessages, default: null})
-  last_bucket_id: Ref<BucketMessages>;
+  @prop({ref: () => MessageBucket, default: null})
+  last_bucket_id: Ref<MessageBucket>;
 
   @Field((type) => Boolean)
   @prop({type: Boolean, default: false})

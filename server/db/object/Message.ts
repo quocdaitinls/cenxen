@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 import {modelOptions, prop, Ref} from "@typegoose/typegoose";
 import {WhatIsIt} from "@typegoose/typegoose/lib/internal/constants";
 import {Field, ObjectType} from "type-graphql";
-import {BucketMessages} from "./BucketMessages";
+import {MessageBucket} from "./MessageBucket";
 import {File} from "./File";
 import JSON_Type from "graphql-type-json";
 import {User} from "./User";
@@ -31,8 +31,8 @@ export class Message {
   chatroom_id: Ref<ChatRoom>;
 
   @Field((type) => String)
-  @prop({ref: () => BucketMessages, required: true})
-  bucket_id: Ref<BucketMessages>;
+  @prop({ref: () => MessageBucket, required: true})
+  bucket_id: Ref<MessageBucket>;
 
   @Field((type) => String)
   @prop({ref: () => User, required: true, immutable: true})

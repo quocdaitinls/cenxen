@@ -1,4 +1,4 @@
-export * from "./BucketMessages";
+export * from "./MessageBucket";
 export * from "./ChatRoom";
 export * from "./File";
 export * from "./Message";

@@ -2,7 +2,8 @@ import {useGQLApiMutation} from "@hooks/api";
 import {Typography} from "@mui/material";
 import {Formik} from "formik";
 import {useRouter} from "next/router";
-import {useResetPasswordFormConfig} from "./hooks/useResetPasswordForm";
+import {useFormConfig} from "type-formik";
+import {ResetPasswordForm} from "./form";
 import AuthLink from "./shared/AuthLink";
 import {AuthSubmitButton} from "./shared/AuthSubmitButton";
 import {AuthTextField} from "./shared/AuthTextField";
@@ -23,15 +24,13 @@ const AuthResetPasswordForm: AuthContentSideFC<ResetPasswordSide> = (props) => {
     onSuccess: () => {},
   });
 
-  const formConfig = useResetPasswordFormConfig({
-    onSubmit: (value) => {
-      resetPassword.mutate({
-        input: {
-          token: token as string,
-          new_password: value.newPassword,
-        },
-      });
-    },
+  const formConfig = useFormConfig(ResetPasswordForm, (value) => {
+    resetPassword.mutate({
+      input: {
+        token: token as string,
+        new_password: value.newPassword,
+      },
+    });
   });
 
   return (

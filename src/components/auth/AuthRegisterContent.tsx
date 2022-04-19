@@ -2,8 +2,8 @@ import {useGQLApiMutation} from "@hooks/api";
 import {Typography} from "@mui/material";
 import {Formik} from "formik";
 import React from "react";
-import {useMutation} from "react-query";
-import {useRegisterFormConfig} from "./hooks/useRegisterForm";
+import {useFormConfig} from "type-formik";
+import {RegisterForm} from "./form";
 import AuthLink from "./shared/AuthLink";
 import {AuthSubmitButton} from "./shared/AuthSubmitButton";
 import {AuthTextField} from "./shared/AuthTextField";
@@ -12,7 +12,6 @@ import {
   StyledAuthRegisterNotification,
 } from "./styles/AuthRegisterContent.styles";
 import {AuthContentSideFC, createAuthContent} from "./util/createAuthContent";
-import axios from "axios";
 
 enum RegisterSide {
   FORM,
@@ -27,24 +26,17 @@ const AuthRegisterForm: AuthContentSideFC<
   RegisterSide,
   RegisterContentProps
 > = ({changeSide}) => {
-  const test = useMutation(() =>
-    axios.get("https://crawlstackoverflow.herokuapp.com/api/question", {})
-  );
-
   const register = useGQLApiMutation((apisMap) => apisMap.register, {
     onSuccess: () => {
       changeSide(RegisterSide.NOTIFICATION, {registerSuccess: true});
     },
-    // onError: (err) => {
-    //   console.log(err);
-    // },
+    onError: (err) => {
+      console.log(err);
+    },
   });
 
-  const formConfig = useRegisterFormConfig({
-    onSubmit: (value) => {
-      register.mutate({input: value});
-      // test.mutate();
-    },
+  const formConfig = useFormConfig(RegisterForm, (value) => {
+    register.mutate({input: value});
   });
 
   return (

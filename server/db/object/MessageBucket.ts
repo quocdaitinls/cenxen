@@ -27,7 +27,7 @@ import {Message} from "./Message";
     timestamps: SchemaOptions_Timestamps,
   },
 })
-export class BucketMessages {
+export class MessageBucket {
   @Field((type) => Int)
   @prop({type: Number, default: 0})
   count: number;
@@ -42,6 +42,6 @@ export class BucketMessages {
 }
 
 // Interfaces
-export interface MongooseInput_BuildBucketMessages {
+export interface MongooseInput_BuildMessageBucket {
   chatroom_id: string;
 }

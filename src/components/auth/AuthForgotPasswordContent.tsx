@@ -2,7 +2,8 @@ import {useGQLApiMutation} from "@hooks/api";
 import {Typography} from "@mui/material";
 import {Formik} from "formik";
 import React from "react";
-import {useForgotPasswordFormConfig} from "./hooks/useForgotPasswordForm";
+import {useFormConfig} from "type-formik";
+import {ForgotPasswordForm} from "./form";
 import AuthLink from "./shared/AuthLink";
 import {AuthSubmitButton} from "./shared/AuthSubmitButton";
 import {AuthTextField} from "./shared/AuthTextField";
@@ -27,10 +28,8 @@ const AuthForgotPasswordForm: AuthContentSideFC<ForgotPasswordSide> = ({
     }
   );
 
-  const formConfig = useForgotPasswordFormConfig({
-    onSubmit: (value) => {
-      forgotPassword.mutate({input: value});
-    },
+  const formConfig = useFormConfig(ForgotPasswordForm, (value) => {
+    forgotPassword.mutate({input: value});
   });
 
   return (

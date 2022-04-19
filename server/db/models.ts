@@ -1,6 +1,6 @@
 import {getModelForClass} from "@typegoose/typegoose";
 import {
-  BucketMessages,
+  MessageBucket,
   ChatRoom,
   File,
   Message,
@@ -18,5 +18,5 @@ export const SectionModel = getModelForClass(Section);
 export const TaskModel = getModelForClass(Task);
 export const TaskCommentModel = getModelForClass(TaskComment);
 export const ChatRoomModel = getModelForClass(ChatRoom);
-export const BucketMessagesModel = getModelForClass(BucketMessages);
+export const MessageBucketModel = getModelForClass(MessageBucket);
 export const MessageModel = getModelForClass(Message);
